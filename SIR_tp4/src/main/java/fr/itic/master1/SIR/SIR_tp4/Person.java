@@ -11,7 +11,8 @@ public class Person {
 	@Id
 	private ObjectId id;
 	private String name;
-	@Reference private Address address;
+	@Reference("person_address")
+	private Address address;
 	public ObjectId getId() {
 		return id;
 	}
