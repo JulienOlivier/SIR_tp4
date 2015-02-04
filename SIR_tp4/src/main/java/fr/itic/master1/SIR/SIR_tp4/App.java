@@ -1,6 +1,7 @@
 package fr.itic.master1.SIR.SIR_tp4;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Morphia;
@@ -13,7 +14,7 @@ public class App
     	Morphia morphia = new Morphia();    
         Mongo mongo = new Mongo();
         morphia.map(Person.class).map(Address.class);
-        Datastore ds = morphia.createDatastore(mongo, "my_database");
+        Datastore ds = morphia.createDatastore(mongo, "database");
         
         Person p = new Person();
         p.setName("Tintin");
@@ -24,16 +25,19 @@ public class App
         address.setPostCode("123 456");
         address.setCountry("Some country");
         //set address
-        p.setAddress(address);
+        //p.setAddress(address);
         
         // create list of address
-        //ArrayList<Address> lesAdd = new ArrayList<Address>();
-        //lesAdd.add(address);
-        //p.setAddress(lesAdd);
+        ArrayList<Address> lesAdd = new ArrayList<Address>();
+        lesAdd.add(address);
+        p.setAddress(lesAdd);
         
         // Save the POJO
         ds.save(p);
-        for (Person e : ds.find(Person.class))
-             System.err.println(e);
-    }
+        /*
+        for (Person e : ds.find(Person.class)){
+        	System.err.println(e);
+        }
+        */
+	}
 }

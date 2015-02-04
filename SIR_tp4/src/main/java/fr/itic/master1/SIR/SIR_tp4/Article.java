@@ -8,14 +8,15 @@ import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 import com.google.code.morphia.annotations.Reference;
 
-@Entity
+@Entity("article")
 public class Article {
 	
 	@Id
 	private ObjectId id;
 	private String name;
 	private int stars;
-	@Reference private List<Person> pers;
+	@Reference
+	private List<Person> pers;
 	public ObjectId getId() {
 		return id;
 	}
